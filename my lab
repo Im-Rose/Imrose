@@ -1,0 +1,66 @@
+## Ans to the question no 1
+team_a = [1, 2, 4, 5, 1, 5, 2]
+team_b = [5, 5, 2, 2, 5, 2, 3]
+a_wins = 0
+b_wins = 0
+for a, b in zip(team_a, team_b):
+    if a > b:
+        a_wins += 1
+    elif b > a:
+        b_wins += 1
+
+if b_wins > a_wins:
+    print("Team A lost")
+else:
+    print("Team A won or tied")
+
+
+
+### ans to the question no -2
+class Rectangle:
+    def __init__(self, length, width):
+        self.length = length
+        self.width = width
+    def area(self):
+        return self.length * self.width
+    def perimeter(self):
+        return 2 * (self.length + self.width)
+
+rect = Rectangle(10, 5)
+print(rect.area(), rect.perimeter())
+
+rect.length = 15
+rect.width = 8
+print(rect.area(), rect.perimeter())
+
+
+
+### ans to the question no 3
+import math
+x1, y1 = 1, 2
+x2, y2 = 4, 6
+dist = math.sqrt((x2 - x1)**2 + (y2 - y1)**2)
+print(dist)
+
+
+
+### ans to the question no 4
+def factorial(n):
+    result = 1
+    for i in range(2, n+1):
+        result *= i
+    return result
+
+print(factorial(9))
+
+
+
+
+### ans to the question no 5
+list1 = [5, 1, 9]
+list2 = [8, 3]
+list3 = [7, 2, 4, 6]
+
+joined = list1 + list2 + list3
+joined.sort()
+print(joined)
