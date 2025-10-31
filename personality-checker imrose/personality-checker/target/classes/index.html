@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Quiz</title></head>
+<body>
+<h1>Personality Quiz</h1>
+<form id="quizForm"></form>
+<button onclick="submitAnswers()">Submit</button>
+<div id="result"></div>
+
+<script>
+    let questions = [];
+
+    async function loadQuestions() {
+        const res = await fetch('http://localhost:8080/api/questions');
+        questions = await res.json();
+
+        const form = document.getElementById('quizForm');
+        form.innerHTML = '';
+
+        questions.forEach((q, i) => {
+            let div = document.createElement('div');
+            div.innerHTML = `<p>${q.id}. ${q.question}</p>`;
+            q.options.forEach((opt, idx) => {
+                div.innerHTML += `
+        <label><input type="radio" name="q${i}" value="${idx}"/> ${opt}</label><br/>
+      `;
+            });
+            form.appendChild(div);
+        });
+    }
+
+    async function submitAnswers() {
+        const answers = questions.map((_, i) => {
+            const radios = document.getElementsByName(`q${i}`);
+            for (const r of radios) {
+                if (r.checked) return parseInt(r.value);
+            }
+            return null;
+        });
+
+        if (answers.includes(null)) {
+            alert('Please answer all questions.');
+            return;
+        }
+
+        const res = await fetch('http://localhost:8080/api/submit', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({answers})
+        });
+
+        const data = await res.json();
+        document.getElementById('result').innerHTML = `<h2>Personality: ${data.personality}</h2><p>${data.message}</p>`;
+    }
+
+    window.onload = loadQuestions;
+</script>
+</body>
+</html>
