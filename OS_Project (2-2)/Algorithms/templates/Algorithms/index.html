@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OS Algorithms</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            color: #4CAF50;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        ul li {
+            margin: 10px 0;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: #ffffff;
+            background-color: #4CAF50;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        ul li a:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>OS Algorithms Calculator</h1>
+    <h2>Choose One Algorithm To Calculate A.W.T :</h2>
+    <ul>
+        <li><a href="{% url 'fcfs' %}">First Come First Serve Algorithm</a></li>
+        <li><a href="{% url 'priority' %}">Priority Scheduling Algorithm</a></li>
+        <li><a href="{% url 'sjf' %}">Shortest Job First Algorithm (non-Preemptive)</a></li>
+        <li><a href="{% url 'preemptive_sjf' %}">Shortest Job First Algorithm (Preemptive)</a></li>
+        <li><a href="{% url 'round_robin' %}">Round Robin Algorithm</a></li>
+        <li><a href="{% url 'bankers_form' %}">Banker's Algorithm</a></li>
+    </ul>
+</body>
+</html>
